@@ -8,10 +8,10 @@ export default class App extends React.Component {
 
     super(props);
     this.state = {
-      saldo: 0.00,
+      saldo: 0,
       estadoBtn: null,
-      txtCredito: 0.00,
-      txtDebito: 0.00,
+      txtCredito:0,
+      txtDebito:0,
     }
   }
 
@@ -21,8 +21,9 @@ export default class App extends React.Component {
     }
 
     salvarCredito = () => {
-      this.state.saldo = (this.state.saldo + parseFloat(this.state.txtCredito)).toFixed(2);
-      return this.setState({estadoBtn: 0})
+      this.state.saldo = -1 * (-this.state.saldo - parseFloat(this.state.txtCredito)).toFixed(2);
+      return this.setState({estadoBtn: 0});
+      
     }
   
 
@@ -64,9 +65,9 @@ export default class App extends React.Component {
             </View>
         )}
 
-          {this.state.estadoBtn == 1 &&(
+            {this.state.estadoBtn == 1 &&(
             <View style={styles.containerNewAba}>
-              <Text style={styles.opCredito}>Operação de Credito</Text>
+              <Text style={styles.opCredito}>Operação de Debito</Text>
               <TextInput
                     autoCorrect = {false}
                     placeholder = {"Digite o valor Credito"}
